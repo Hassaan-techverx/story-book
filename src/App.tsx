@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
+import { StateType } from "./store/root-reducer";
+import { getUserAction } from "./container/users/slice";
+import CustomTable from "./components/CustomTable";
+import { columns } from "./components/config";
+import Loader from "./components/Loader";
 
 function App() {
+  const { data } = useSelector((state: StateType) => state.users.user);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAction());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {data ? (
+        <>
+          <h1 className="text-center my-3">Users Table</h1>
+          <div className="px-3"> <CustomTable data={data} columns={columns} /></div>
+        </>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 }
 
