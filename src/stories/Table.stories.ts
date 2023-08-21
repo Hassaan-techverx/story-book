@@ -1,7 +1,6 @@
-import Table from "../components/CustomTable";
+import Table from "./components/CustomTable";
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { Button } from "./Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const columns = [
   {
@@ -18,22 +17,23 @@ const columns = [
   },
 ];
 const data = [
-  { Name: "John", Age: 25, Country: "USA" },
-  { Name: "Alice", Age: 30, Country: "Canada" },
-  { Name: "Bob", Age: 22, Country: "UK" },
+  { Name: "John", Age: 25, Country: "USA", id: "1" },
+  { Name: "Alice", Age: 30, Country: "Canada", id: "2" },
+  { Name: "Bob", Age: 22, Country: "UK", id: "3" },
 ];
 
-const meta = {
+const meta: Meta<typeof Table> = {
   title: "Example/Table",
   component: Table,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
+
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} satisfies Meta<typeof Table>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -42,5 +42,11 @@ export const Secondary: Story = {
   args: {
     columns: columns,
     data: data,
+    backgroundColor: "green",
+    textColor: "black",
+    coloredRow: "odd",
+    onRowClick: (id) => {
+      console.log("Row clicked with id:", id);
+    },
   },
 };

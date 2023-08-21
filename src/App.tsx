@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import { StateType } from "./store/root-reducer";
 import { getUserAction } from "./container/users/slice";
-import CustomTable from "./components/CustomTable";
-import { columns } from "./components/config";
-import Loader from "./components/Loader";
+import CustomTable from "./stories/components/CustomTable";
+import { columns } from "./stories/components/config";
+import Loader from "./stories/components/Loader";
 
 function App() {
   const { data } = useSelector((state: StateType) => state.users.user);

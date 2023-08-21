@@ -5,6 +5,7 @@
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
     "@reduxjs/toolkit": "^1.9.5",
+    "@storybook/addon-docs": "^7.3.2",
     "@tanstack/react-table": "^8.9.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
